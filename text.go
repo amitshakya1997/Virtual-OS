@@ -5,7 +5,6 @@ import (
 	"strconv"
 
 	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/storage"
@@ -15,8 +14,8 @@ import (
 var count int = 1
 
 func showTextEditor() {
-	a := app.New()
-	w := a.NewWindow("Text Editor")
+	//a := app.New()
+	w := myApp.NewWindow("Text Editor")
 	w.Resize(fyne.NewSize(600, 600))
 
 	content := container.NewVBox(
@@ -47,31 +46,31 @@ func showTextEditor() {
 		saveFileDialog.Show()
 	})
 
-	openBtn := widget.NewButton("Open Text file",func() {
+	openBtn := widget.NewButton("Open Text file", func() {
 		openFileDialog := dialog.NewFileOpen(
 			func(r fyne.URIReadCloser, _ error) {
-				ReadData,_ := ioutil.ReadAll(r)
+				ReadData, _ := ioutil.ReadAll(r)
 
-				output:= fyne.NewStaticResource("New File",ReadData)
-				viewData:= widget.NewMultiLineEntry()
+				output := fyne.NewStaticResource("New File", ReadData)
+				viewData := widget.NewMultiLineEntry()
 
 				viewData.SetText(string(output.StaticContent))
 
-				w:= fyne.CurrentApp().NewWindow(
+				w := fyne.CurrentApp().NewWindow(
 					string(output.StaticName))
-					w.SetContent(container.NewScroll(viewData))
-					w.Resize(fyne.NewSize(400,400))
-					w.Show()
-				
-				},w)
+				w.SetContent(container.NewScroll(viewData))
+				w.Resize(fyne.NewSize(400, 400))
+				w.Show()
 
-				openFileDialog.SetFilter(
-					storage.NewExtensionFileFilter([] string{".txt"}))
+			}, w)
 
-				openFileDialog.Show()
+		openFileDialog.SetFilter(
+			storage.NewExtensionFileFilter([]string{".txt"}))
+
+		openFileDialog.Show()
 	})
 
-	w.SetContent(
+	textContainer := container.NewVBox(
 		container.NewVBox(
 			content,
 			input,
@@ -81,6 +80,8 @@ func showTextEditor() {
 			),
 		),
 	)
-	w.ShowAndRun()
+
+	w.SetContent(container.NewBorder(DeskBtn, nil, nil, nil, textContainer))
+	w.Show()
 
 }

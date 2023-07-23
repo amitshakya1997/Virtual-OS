@@ -8,17 +8,16 @@ import (
 
 	//"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/app"
 
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	//"github.com/yuin/goldmark/extension"
 )
 
-func showGalleryApp() {
-	a := app.New()
-	w := a.NewWindow("Hello")
-	w.Resize(fyne.NewSize(800, 600))
+func showGalleryApp(w fyne.Window) {
+	//a := app.New()
+	//w := a.NewWindow("Hello")
+	//w.Resize(fyne.NewSize(800, 600))
 	root_src := "/home/amit/Pictures/"
 	files, err := ioutil.ReadDir(root_src)
 	if err != nil {
@@ -40,7 +39,7 @@ func showGalleryApp() {
 
 	//image := canvas.NewImageFromFile(picsArr[0])
 	tabs.SetTabLocation(container.TabLocationLeading)
-	w.SetContent(tabs)
-	w.ShowAndRun()
+	w.SetContent(container.NewBorder(panelContent, nil, nil, nil, tabs))
+	w.Show()
 
 }

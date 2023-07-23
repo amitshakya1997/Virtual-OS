@@ -11,7 +11,7 @@ import (
 
 var myApp fyne.App = app.New()
 
-var myWindow fyne.Window = myApp.NewWindow("Pep OS")
+var myWindow fyne.Window = myApp.NewWindow("Virtual OS")
 
 var btn1 fyne.Widget
 var btn2 fyne.Widget
@@ -20,7 +20,7 @@ var btn4 fyne.Widget
 var img fyne.CanvasObject
 var DeskBtn fyne.Widget
 
-var panelContent = *fyne.Container
+var panelContent *fyne.Container
 
 func main() {
 	myApp.Settings().SetTheme(theme.LightTheme())
@@ -31,7 +31,7 @@ func main() {
 	})
 
 	btn2 = widget.NewButtonWithIcon("Calculator", theme.ContentAddIcon(), func() {
-		showCalc(myWindow)
+		showCalc()
 	})
 
 	btn3 = widget.NewButtonWithIcon("Gallery App", theme.StorageIcon(), func() {
@@ -42,7 +42,7 @@ func main() {
 		showTextEditor()
 	})
 
-	DeskBtn = widget.NewButtonWithIcon("Text Editor", theme.HomeIcon(), func() {
+	DeskBtn = widget.NewButtonWithIcon("Home", theme.HomeIcon(), func() {
 		myWindow.SetContent(container.NewBorder(panelContent, nil, nil, nil, img))
 	})
 

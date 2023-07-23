@@ -4,16 +4,15 @@ import (
 	"strconv"
 
 	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/widget"
 	"github.com/Knetic/govaluate"
 )
 
 func showCalc() {
-	a := app.New()
-	w := a.NewWindow("Calculator")
-	w.Resize(fyne.NewSize(600, 400))
+	//a := app.New()
+	//w := a.NewWindow("Calculator")
+	//w.Resize(fyne.NewSize(600, 400))
 	output := ""
 	input := widget.NewLabel(output)
 	isHistory := false
@@ -134,7 +133,7 @@ func showCalc() {
 
 	})
 
-	calcContainer:=container.NewVBox(container.NewVBox(
+	calcContainer := container.NewVBox(container.NewVBox(
 		input,
 		history,
 		container.NewGridWithColumns(1,
@@ -163,16 +162,12 @@ func showCalc() {
 				plusBtn),
 			container.NewGridWithColumns(2,
 				container.NewGridWithColumns(2,
-					zeroBtn, dotBtn), equalBtn,),),),
-	)
+					zeroBtn, dotBtn), equalBtn))))
 
-	
-	
-	w:=myApp.NewWindow("Calc");
-	w.Resize(fyne.NewSize(500,200));
+	w := myApp.NewWindow("Calc")
+	w.Resize(fyne.NewSize(500, 280))
 
-	w.SetContent(
-		container.NewBorder(DeskBtn,nil,nil,nil,calcContainer),
-	)
+	w.SetContent(container.NewBorder(DeskBtn, nil, nil, nil, calcContainer))
 	w.Show()
+
 }

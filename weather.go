@@ -9,15 +9,14 @@ import (
 	"encoding/json"
 
 	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 )
 
 func showWeatherApp(w fyne.Window) {
-	a := app.New()
-	w := a.NewWindow("Weather App")
-	w.Resize(fyne.NewSize(500, 500))
+	//a := app.New()
+	//w := a.NewWindow("Weather App")
+	//w.Resize(fyne.NewSize(500, 500))
 
 	//API Part
 	res, err := http.Get("http://api.openweathermap.org/data/2.5/weather?q=delhi&APPID=4176dcdcb9bb3ab033d8c58a42f13ecb")
